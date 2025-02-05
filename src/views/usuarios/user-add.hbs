@@ -1,0 +1,103 @@
+<div class="container" id="content">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/config">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/usuarios">Usuarios</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nuevo Usuario</li>
+        </ol>
+    </nav>
+    
+    <div class="d-flex justify-content-center align-items-center text-center mb-3">
+        <h5 class="mt-1">
+            {{pageTitle}}
+        </h5>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                    <i class="bi bi-person-plus mt-2" style="font-size: 3rem"></i>
+                    <form action="/api/usuarios" method="POST" class="px-2" enctype="application/x-www-form-urlencoded">
+                        <hr>
+                        <div class="container text-center">
+                            <div class="row mt-3 p-1">
+                                <!-- Campo ID -->
+                                <div class="col-md-5">
+                                    <div class="input-group">
+                                        <span class="input-group-text label-space-sm" id="label-id">ID COLAB</span>
+                                        <input type="text" class="form-control" id="id_colab" name="id_colab" aria-label="ID COLAB" aria-describedby="label-id" required>
+                                    </div>
+                                </div>
+                                <!-- Campo Rol -->
+                                <div class="col-md-7">
+                                                                <!-- Campo Rol -->
+                            <div class="input-group">
+                                <label class="input-group-text label-space-sm" for="rol">ROL</label>
+                                <select class="form-select" id="rol" name="rol" required>
+                                    <option selected disabled value="">Seleccionar</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="extOnly">Técnico Telefonía</option>
+                                </select>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3">
+                            <!-- Campo Usuario -->
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text label-space-sm" id="label-nombre">NOMBRE</span>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" aria-label="NOMBRE" aria-describedby="label-nombre" required>
+                                    </div>
+                            <!-- Campo Usuario -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text label-space" id="label-usuario">USUARIO</span>
+                                <input type="text" class="form-control" id="usuario" name="usuario" aria-label="USUARIO" aria-describedby="label-usuario" required>
+                            </div>
+                            <!-- Campo Correo -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text label-space" id="label-correo">CORREO</span>
+                                <input type="email" class="form-control" id="correo" name="correo" aria-label="CORREO" aria-describedby="label-correo" required>
+                            </div>
+                            <!-- Campo Contraseña Provisional -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text label-space2" id="label-pass">CONTRASEÑA</span>
+                                <input type="password" class="form-control" id="password" name="password" aria-label="CONTRASEÑA PROVISIONAL" aria-describedby="label-pass" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text label-space2" id="label-pass">REPETIR CONTRASEÑA</span>
+                                <input type="password" class="form-control" id="password-conf" name="password-conf" aria-label="CONFIRMAR CONTRASEÑA" aria-describedby="label-pass" required>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-around mb-2">
+                            <button type="submit" class="btn brandAlter px-4">Guardar</button>
+                            <button type="button" class="btn brandAlter2 px-4" onclick="window.location.href='/usuarios';">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast container -->
+{{#if toast}}
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-{{toast.type}} border-3 show animate-toast" role="alert"
+        aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <strong><i class="bi bi-exclamation-triangle"></i>&nbsp;{{toast.title}}</strong>:
+                <p>{{toast.message}}</p>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+{{/if}}

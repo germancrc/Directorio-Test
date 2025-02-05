@@ -1,0 +1,67 @@
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card cardLogin shadow-lg">
+                <div class="card-body">
+                    <div class="text-center">
+                        <img src="/img/Logo2.png" class="mt-3 mb-1 shadow" alt="Logo" width="140" height="auto" />
+                        <h5 class="mt-3 fw-bold">DIRECTORIO TELEFÓNICO</h5>
+                    </div>
+                    <form method="POST" action="/login" class="px-3 w-100">
+                        <hr>
+                        <div class="input-group input-group-lg mb-3 shadow-sm">
+                            <label class="input-group-text fw-bold" for="propiedadesSelector"><i
+                                    class="bi bi-building-check"></i>&nbsp;</label>
+                            <select class="form-select" id="propiedadesSelector" name="propiedad" required>
+                                <option selected disabled>Seleccione su propiedad...</option>
+                            </select>
+                        </div>
+                        <div class="input-group input-group-lg mb-3 shadow-sm">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="bi bi-person-badge-fill"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Usuario" aria-label="Username"
+                                aria-describedby="basic-addon1" id="inputUsername" name="username" required>
+                        </div>
+                        <div class="input-group input-group-lg mb-3 shadow-sm">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="bi bi-key"></i>
+                            </span>
+                            <input type="password" class="form-control" placeholder="Contraseña" aria-label="Password"
+                                aria-describedby="basic-addon2" id="inputPassword" name="password" required>
+                            <!-- Ícono de ojo para mostrar/ocultar contraseña -->
+                            <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                                <i class="bi bi-eye-slash"></i> <!-- Ícono de ojo cerrado (por defecto) -->
+                            </span>
+                        </div>
+                        <hr>
+                        <div class="d-grid mb-3 py-2">
+                            <button type="submit" class="btnLogin shadow">
+                                ENTRAR
+                                <i class="bi bi-chevron-right d-none"></i> <!-- Icono oculto inicialmente -->
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Toast container -->
+{{#if toast}}
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-{{toast.type}} border-3 show animate-toast" role="alert"
+        aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <strong><i class="bi bi-exclamation-triangle"></i>&nbsp;{{toast.title}}</strong>:
+                <p>{{toast.message}}</p>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+{{/if}}

@@ -1,0 +1,74 @@
+{{! <div class="loader" id="loader"></div> }}
+
+<!-- Contenido de la página -->
+{{! <div id="content" style="display: none;"> }}
+  <div id="content">
+    <main class="container">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/config">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Extensiones</li>
+        </ol>
+      </nav>
+      <div class="d-flex justify-content-center align-items-center text-center mb-3">
+
+        <h5 class="mt-1 fw-bold">
+          {{pageTitle}}
+        </h5>
+      </div>
+
+      <div class="card shadow px-3 py-3 fade-in">
+
+{{!--         <div class="text-center mb-3 mt-3">
+          <div class="row">
+            <div class="col-3">
+              <div class="input-group">
+                <label class="input-group-text label-space3" for="dependencia">DEPENDENCIA</label>
+                <select class="form-select" id="dependencia-add" name="dependencia" required>
+                  <option selected value="todas">TODAS</option>
+                </select>
+              </div>
+            </div>
+           <div class="col-3">
+              <div class="input-group">
+                <label class="input-group-text label-space-sm" for="estado">ESTADO</label>
+                <select class="form-select" id="estado" name="estado" required>
+                  <option selected value="todas">TODAS</option>
+                  <option value="activo">ACTIVAS</option>
+                  <option value="inactivo">INACTIVAS</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+
+            </div>
+          </div>
+        </div> --}}
+
+
+        <table id="ext-config" class="table table-striped" style="width:100%">
+          <thead></thead>
+          <tbody class="table-group-divider"></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast container -->
+  {{#if toast}}
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast align-items-center shadow text-bg-{{toast.type}}
+        border-3 show animate-toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <strong><i class="bi bi-exclamation-triangle"></i>&nbsp;{{toast.title}}</strong>:
+          <p>{{toast.message}}</p>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  {{/if}}

@@ -1,0 +1,581 @@
+/* Variables para temas */
+[data-bs-theme="dark"] {
+  --body-bg: #212529;
+  --body-color: #e0e0e0;
+
+  --app-name-color: white;
+
+  --label-bg: #223343;
+  --label-color: white;
+
+  --navbar-bg: #223242;
+  --navbar-conf-bg: #1a2026;
+  --navbar-color: white;
+
+  --brand-color: #034054;
+  --brand-alter-bg: #223242;
+  --brand-alter-color: white;
+  --brand-alter-hover-bg: white;
+  --brand-alter-hover-color: black;
+
+  --card-menu-main-bg: 1a2026;
+
+  --card-menu-hover-bg: white;
+  --card-menu-hover-color: black;
+
+  --card-title-color: white;
+
+  --brand-alter2-bg: #e03616;
+  --brand-alter2-color: white;
+
+  --btn-edit-bg: #ffa630;
+  --btn-edit-color: black;
+
+  --card-action-bg-hover: #212529;
+  --card-action-color-hover: white;
+
+  --border-color: #b8c4c7;
+
+  --loader-primary: #ffffff;
+
+  --switch-color: white; /* Color de los íconos en modo oscuro */
+
+  --sidebar-bg: #223242;
+
+  --nav-link-bg: #034054;
+  --nav-link-color: white;
+}
+
+[data-bs-theme="light"] {
+  --body-bg: #f1f2f5;
+  --body-color: #000000;
+
+  --app-name-color: black;
+
+  --label-bg: #d9e4ec;
+  --label-color: #223343;
+
+  --navbar-bg: #1a2026;
+  --navbar-conf-bg: white;
+  --navbar-color: #000000;
+
+  --brand-color: #87c7dc;
+  --brand-alter-bg: #223242;
+  --brand-alter-color: white;
+  --brand-alter-hover-bg: #223242;
+  --brand-alter-hover-color: white;
+
+  --card-menu-main-bg: white;
+
+  --card-menu-hover-bg: #034054;
+  --card-menu-hover-color: white;
+
+  --card-title-color: black;
+
+  --brand-alter2-bg: #e0745a;
+  --brand-alter2-color: white;
+
+  --btn-edit-bg: #ffc857;
+  --btn-edit-color: #034054;
+
+  --card-action-bg-hover: #e6e8eb;
+  --card-action-color-hover: #000000;
+
+  --border-color: #a8b6c1;
+
+  --loader-primary: #034054;
+
+  --switch-color: black; /* Color de los íconos en modo claro */
+
+  --sidebar-bg: #223242;
+
+  --nav-link-bg: #034054;
+  --nav-link-color: white;
+}
+
+/* Aplicación de las variables */
+body {
+  font-family: "Roboto", sans-serif;
+  color: var(--body-color);
+  background-color: var(--body-bg);
+}
+
+#noHotelSelected {
+  display: none;
+}
+
+
+#content {
+  margin-top: 3.5rem; /* Espaciado adicional opcional para mejor separación visual */
+}
+
+#content-endUser {
+  margin-top: 2rem; /* Espaciado adicional opcional para mejor separación visual */
+}
+
+.cardLogin {
+  margin-top: 12vh;
+  width: 32vw; /* Ancho por defecto */
+  min-width: 25vw; /* Ancho mínimo */
+}
+
+/* Para pantallas muy grandes (más de 1920px) */
+@media (min-width: 1921px) {
+  .cardLogin {
+    width: 20vw; /* Reduce el ancho para pantallas muy grandes */
+    min-width: 15vw; /* Ajusta el ancho mínimo */
+  }
+}
+
+/* Para pantallas grandes (escritorios) */
+@media (max-width: 1920px) {
+  .cardLogin {
+    width: 32vw; /* Mantén el ancho por defecto */
+    min-width: 25vw; /* Mantén el ancho mínimo */
+  }
+}
+
+/* Para pantallas más pequeñas (tablets) */
+@media (max-width: 1024px) {
+  .cardLogin {
+    width: 50vw; /* Aumenta el ancho para tablets */
+    min-width: 40vw; /* Ajusta el ancho mínimo */
+  }
+}
+
+/* Para pantallas aún más pequeñas (móviles) */
+@media (max-width: 768px) {
+  .cardLogin {
+    width: 80vw; /* Ocupa casi todo el ancho en móviles */
+    min-width: 70vw; /* Ajusta el ancho mínimo */
+  }
+}
+
+/* Para pantallas muy pequeñas (móviles pequeños) */
+@media (max-width: 480px) {
+  .cardLogin {
+    width: 90vw; /* Ocupa casi todo el ancho en móviles pequeños */
+    min-width: 80vw; /* Ajusta el ancho mínimo */
+  }
+}
+
+
+.login-page{
+  background-color: #223242;
+}
+
+/* Estilo para los íconos de la clase .switch */
+.switch {
+  color: var(--switch-color);
+  }
+
+.label-space,
+.label-space-sm {
+  width: 94px;
+  text-align: center;
+/*   background-color: var(--label-bg); */
+  color: var(--label-color);
+}
+
+.label-space2{
+  width: 200px;
+  text-align: center;
+/*   background-color: var(--label-bg); */
+  color: var(--label-color);
+}
+
+.label-space3{
+  width: 130px;
+  text-align: center;
+/*   background-color: var(--label-bg); */
+  color: var(--label-color);
+}
+
+.navbar-fixed-theme {
+  background-color: var(--navbar-conf-bg);
+  color: var(--navbar-color);
+}
+
+.navbar-login-theme {
+  background-color: #223242;
+  color: white;
+}
+
+.navbar-brand-rcd img {
+  max-height: 40px;
+  transform: scale(2); 
+  transform-origin: center; 
+  margin-left: 20px;
+}
+
+.navbar-brand-hr img {
+  max-height: 40px;
+  transform: scale(1.30); /* Escala el logo al 120% */
+  transform-origin: center; /* Escala desde el centro */
+  margin-left: 20px;
+}
+
+.navbar{
+  height: 64px;
+}
+
+.barra{
+  transform: scale(2.5); /* Escala al 120% */
+  transform-origin: center; /* Escala desde el centro */
+  color: var(--switch-color);
+  margin-right: -10px;
+}
+
+.btn-user{
+  border: 2px solid var(--switch-color);
+}
+
+.card-title {
+  color: var(--card-title-color); /* Usa el color del texto general según el tema */
+}
+
+.card-top {
+  margin-top: 4rem;
+}
+
+.brandColor {
+  background-color: var(--brand-color);
+}
+
+.brandAlter {
+  background-color: var(--brand-alter-bg);
+  color: var(--brand-alter-color);
+  text-decoration: none;
+  border: 2px solid var(--brand-alter-color);
+  padding: 0.7rem;
+}
+
+.brandAlter:hover,
+.brandAlter:focus,
+.brandAlter:active {
+  background-color: var(--brand-alter-hover-bg);
+  color: var(--brand-alter-hover-color);
+  text-decoration: none;
+}
+
+.card-menu-main{
+  background-color: var(--card-menu-main-bg);
+}
+
+.card-menu{
+  background-color: var(--card-menu-main-bg);
+}
+
+.card-menu-main:hover,
+.card-menu-main:focus,
+.card-menu-main:active {
+  background-color: var(--card-menu-hover-bg);
+  text-decoration: none;
+} */
+
+.card-menu-main:active {
+  transform: translateX(2px) translateY(2px);
+}
+
+.card-menu-main:hover .card-title,
+.card-menu-main:focus .card-title,
+.card-menu-main:active .card-title {
+  color: var(--card-menu-hover-color);
+}
+
+.card-menu-main:hover i,
+.card-menu-main:focus i,
+.card-menu-main:active i {
+  color: var(--card-menu-hover-color);
+}
+
+
+
+.brandAlter2 {
+  background-color: var(--brand-alter2-bg);
+  color: var(--brand-alter2-color);
+  text-decoration: none;
+  border: 0.5px solid var(--brand-alter2-color);
+}
+
+.brandAlter2:hover,
+.brandAlter2:focus,
+.brandAlter2:active {
+  background-color: var(--brand-alter2-bg);
+  color: var(--brand-alter2-color);
+  text-decoration: none;
+}
+
+.btnEdit {
+  background-color: var(--btn-edit-bg);
+  color: var(--btn-edit-color);
+  font-weight: bold;
+  text-decoration: none;
+  border: 0.5px solid var(--btn-edit-color);
+}
+
+.btnLogin {
+  background-color: #223242;
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+  text-decoration: none;
+  border: 1px solid black;
+  border-radius: 6px 6px 6px 6px;
+-webkit-border-radius: 6px 6px 6px 6px;
+-moz-border-radius: 6px 6px 6px 6px;
+  font-size: 22px;
+}
+
+.btnEdit:hover,
+.btnEdit:focus,
+.btnEdit:active {
+/*   background-color: var(--brand-alter-hover-bg); */
+  color: var(--btn-edit-color);
+  border: 1.5px solid var(--app-name-color);
+  text-decoration: none;
+}
+
+.nav-link{
+  color: white !important;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active {
+  background-color: #f9f9f9;
+  color: black !important;
+  text-decoration: none;
+}
+
+.btn:active,
+.btnLogin:active {
+  transform: translateX(2px) translateY(2px);
+}
+
+#switchThemeColor{
+  transform: scale(1.6); 
+  transform-origin: center;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+  margin-bottom: 7.1px;
+}
+
+/* Elimina márgenes adicionales en el form-check */
+.form-check.form-switch {
+  margin-top: 5px;
+}
+
+/* Ajusta el alineamiento del input en el centro */
+.form-check-input {
+  transform: translateY(-1px); /* Ajusta según sea necesario */
+  vertical-align: middle;
+}
+
+.form-check-input:checked {
+  background-color: #212529; /* Cambia a tu color deseado */
+  border-color: white; /* Cambiar también el color del borde */
+}
+
+/* Alinear verticalmente al centro */
+.text-center-vertical {
+  vertical-align: middle !important;
+}
+
+/* Justificar texto a la izquierda */
+.text-left {
+  text-align: left !important;
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 4px solid #0000;
+  border-radius: 50%;
+  border-color: #ccc #0000;
+  animation: l16 1s infinite linear;
+}
+.loader::before,
+.loader::after {    
+  content: "";
+  grid-area: 1/1;
+  margin: 2px;
+  border: inherit;
+  border-radius: 50%;
+}
+.loader::before {
+  border-color: #f03355 #0000;
+  animation: inherit; 
+  animation-duration: .5s;
+  animation-direction: reverse;
+}
+.loader::after {
+  margin: 8px;
+}
+@keyframes l16 { 
+  100%{transform: rotate(1turn)}
+}
+
+.app-name{
+  margin-left: 290px;
+  color: var(--app-name-color);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  z-index: 1040; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--sidebar-bg); /* Color del fondo del sidebar */
+  overflow-y: auto; /* Permite scroll si el contenido excede la altura */
+  color: var(--body-color); /* Color del texto del tema */
+}
+
+/* Estilo para el contenedor principal */
+#page-content-wrapper {
+  margin-left: 280px; /* Compensa el ancho del sidebar */
+  background-color: var(--body-bg); /* Fondo del contenido */
+  color: var(--body-color); /* Color del texto */
+  min-height: 100vh;
+  padding: 20px;
+  overflow-y: auto; /* Solo muestra la barra de desplazamiento si hay contenido adicional */
+}
+
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;    /* Centra verticalmente */
+  height: 100px;          /* Ajusta según el diseño */
+}
+
+
+
+/* barras de desplazamiento */
+
+/* Personalizar la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento */
+  height: 12px; /* Altura de la barra de desplazamiento horizontal (si la usas) */
+}
+
+/* Estilo para el fondo de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color del fondo de la barra de desplazamiento */
+  border-radius: 10px;
+}
+
+/* Estilo para el "dedo" de la barra de desplazamiento (la parte que se mueve) */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color del dedo de la barra */
+  border-radius: 10px;
+}
+
+/* Estilo para el dedo cuando está siendo "hover" */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color del dedo de la barra cuando pasa el cursor por encima */
+}
+
+/* Personalización de la barra de desplazamiento horizontal (si es necesario) */
+::-webkit-scrollbar-horizontal {
+  height: 8px;
+}
+
+
+
+/* Cambiar el fondo del elemento activo en la paginación */
+/* .pagination .page-item.active .page-link {
+  background-color: #223242;
+  border-color: darkgray; 
+  color: white; 
+} */
+
+/* Cambiar el color de fondo cuando el mouse pasa sobre los elementos de la paginación */
+.pagination .page-item:hover .page-link {
+  /* background-color: #223242; */
+/*   border-color: white; */
+/*   color: white; */
+}
+
+
+.fade-in-bottom {
+	-webkit-animation: fade-in-bottom 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in-bottom 0.9s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2025-1-26 19:26:20
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation fade-in-bottom
+ * ----------------------------------------
+ */
+ @-webkit-keyframes fade-in-bottom {
+  0% {
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-bottom {
+  0% {
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+	-webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+
+/* ----------------------------------------------
+ * Generated by Animista on 2025-1-26 20:5:24
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation fade-in
+ * ----------------------------------------
+ */
+ @-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

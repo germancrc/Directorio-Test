@@ -1,0 +1,213 @@
+body {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  /* background-color: #F4F5F6; */
+}
+
+/* .cardLogin{
+  box-shadow: 4px 4px 6px 0px rgba(255,255,255,0.23);
+  -webkit-box-shadow: 4px 4px 6px 0px rgba(255,255,255,0.23);
+  -moz-box-shadow: 4px 4px 6px 0px rgba(255,255,255,0.23);
+} */
+
+.label-space {
+  width: 94px; /* Ajusta el ancho del label */
+  text-align: center; /* Centra el texto dentro del label */
+  background-color: #223343 !important; /* Fondo negro */
+  color: white !important;
+}
+
+.label-space-sm {
+  width: 94px; /* Ajusta el ancho del label */
+  text-align: center; /* Centra el texto dentro del label */
+  background-color: #223343 !important; /* Fondo negro */
+  color: white !important;
+}
+
+.navbar-fixed-theme {
+  background-color: #223242 !important; /* Fondo negro */
+  color: white !important; /* Texto blanco */
+}
+
+.navbar-brand-rcd img {
+  max-height: 40px;
+  transform: scale(1.8); /* Escala el logo al 120% */
+  transform-origin: center; /* Escala desde el centro */
+  margin-left: 20px;
+}
+
+.navbar-brand-hr img {
+  max-height: 40px;
+  transform: scale(1.25); /* Escala el logo al 120% */
+  transform-origin: center; /* Escala desde el centro */
+  margin-left: 20px;
+}
+
+
+.brandColor {
+  background-color: #034054;
+}
+
+.card,
+.brandAlter,
+.btnEdit {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.text-center-vertical {
+  vertical-align: middle;
+  text-align: left !important;
+}
+
+.btn:active {
+  transform: translateX(2px) translateY(2px);
+}
+
+.brandAlter {
+  background-color: #1a5465;
+  color: white;
+  text-decoration: none; /* Opcional: elimina el subrayado */
+  border: 0.5px solid white;
+}
+
+.brandAlter:hover,
+.brandAlter:focus,
+.brandAlter:active {
+  background-color: white; /* Mantén el color de fondo */
+  color: black; /* Mantén el color del texto */
+  text-decoration: none; /* Opcional: elimina el subrayado */
+}
+
+.brandAlter2 {
+  background-color: #e03616;
+  color: white;
+  text-decoration: none; /* Opcional: elimina el subrayado */
+  border: 0.5px solid white;
+}
+
+.brandAlter2:hover,
+.brandAlter2:focus,
+.brandAlter2:active {
+  background-color: #e03616;
+  color: white;
+  text-decoration: none; /* Opcional: elimina el subrayado */
+}
+
+.btnEdit {
+  background-color: #ffa630;
+  color: black;
+  font-weight: bold;
+  text-decoration: none; /* Opcional: elimina el subrayado */
+  border: 0.5px solid white;
+}
+
+.btnEdit:hover,
+.btnEdit:focus,
+.btnEdit:active {
+  background-color: white; /* Mantén el color de fondo */
+  color: black; /* Mantén el color del texto */
+  text-decoration: none; /* Opcional: elimina el subrayado */
+}
+
+.card-action:hover,
+.card-action:focus,
+.card-action:active {
+  background-color: #212529;
+  color: white;
+  border: 0.5px solid #b8c4c7;
+  text-decoration: none; /* Opcional: elimina el subrayado */
+}
+
+.card-top {
+  margin-top: 4rem;
+}
+
+.form-check-input,
+.switch {
+  transform: scale(1.3);
+}
+
+.justify-content-between {
+  justify-content: center !important;
+}
+
+#dt-search-0.form-control.form-control-sm,
+#dt-search-1.form-control.form-control-sm,
+#dt-search-2.form-control.form-control-sm,
+#dt-search-3.form-control.form-control-sm,
+#dt-search-4.form-control.form-control-sm,
+#dt-search-5.form-control.form-control-sm,
+#dt-search-6.form-control.form-control-sm,
+#dt-search-7.form-control.form-control-sm {
+  max-width: 240px !important;
+}
+
+#lineas_info {
+  margin-top: 10px;
+  width: 30vw !important;
+}
+
+/* Estilo para tema oscuro */
+[data-bs-theme="dark"] {
+  background-color: #212529;
+  color: #e0e0e0;
+}
+
+/* Estilo para tema claro */
+[data-bs-theme="light"] {
+  background-color: #fbf9ff !important;
+  color: #000000 !important;
+}
+
+#loader {
+  margin-top: 40vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 55px;
+  aspect-ratio: 1;
+  --g1: conic-gradient(from 90deg at 3px 3px, #0000 90deg, #fff 0);
+  --g2: conic-gradient(from -90deg at 22px 22px, #0000 90deg, #fff 0);
+  background: var(--g1), var(--g1), var(--g1), var(--g2), var(--g2), var(--g2);
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  animation: l7 1.5s infinite;
+}
+@keyframes l7 {
+  0% {
+    background-position: 0 0, 0 100%, 100% 100%;
+  }
+  25% {
+    background-position: 100% 0, 0 100%, 100% 100%;
+  }
+  50% {
+    background-position: 100% 0, 0 0, 100% 100%;
+  }
+  75% {
+    background-position: 100% 0, 0 0, 0 100%;
+  }
+  100% {
+    background-position: 100% 100%, 0 0, 0 100%;
+  }
+}
+
+
+
+.animate-toast {
+    animation: fadeInOut 6s forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-100%); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-100%); }
+}
+
+.toast-container {
+    z-index: 9999;
+}
+

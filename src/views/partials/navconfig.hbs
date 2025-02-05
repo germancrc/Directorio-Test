@@ -1,0 +1,46 @@
+<nav class="navbar navbar-fixed-theme fixed-top shadow">
+  <div class="container-fluid">
+    <div class="row w-100 align-items-center justify-content-between">
+
+      <!-- Centro vacío -->
+<div class="col d-flex align-items-center justify-content-start">
+  <h6 class="app-name fw-bold mt-2"><i class="bi bi-journals"></i>&nbsp;ADMIN DIRECTORIO | {{nombrePropiedad}}</h6>
+</div>
+
+
+      <!-- Segunda columna: Controles de tema y usuario -->
+      <div class="col-auto d-flex align-items-center">
+        <!-- Controles de tema -->
+        <i class="bi bi-brightness-high-fill me-3 switch"></i>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="switchThemeColor">
+          <label class="form-check-label" for="switchThemeColor"></label>
+        </div>
+        <i class="bi bi-moon-fill ms-2 switch"></i>
+        <div class="px-3 barra">
+          |
+        </div>
+        <!-- Usuario -->
+        <div class="btn-group dropstart ms-3">
+          <button type="button" class="btn btn-user btn-sm py-2 dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="bi bi-person-circle"></i>&nbsp;{{nombre_nav}}
+          </button>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" type="button"><i class="bi bi-person-fill-gear"></i>&nbsp;Perfil</button>
+            </li>
+            <li>
+              <a class="dropdown-item logout-btn" href="#" data-logout-url="/logout">
+                <i class="bi bi-box-arrow-right"></i>&nbsp;Salir
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+

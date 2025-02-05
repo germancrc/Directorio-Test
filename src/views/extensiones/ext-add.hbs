@@ -1,0 +1,119 @@
+<div class="container" id="content">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/config">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/extensiones">Extensiones</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nueva Extensión</li>
+        </ol>
+    </nav>
+    <div class="d-flex justify-content-center align-items-center text-center mb-3">
+
+        <h5 class="mt-1 fw-bold">
+            {{pageTitle}}
+        </h5>
+    </div>
+    <div class="row justify-content-center fade-in">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                    <i class="bi bi-telephone-plus mt-2 " style="font-size: 3rem"></i>
+                    <form action="/api/extensiones" method="POST" class="w-100"
+                        enctype="application/x-www-form-urlencoded">
+                        <hr>
+                        <div class="container text-center">
+                            <div class="row mt-3 p-1">
+                                <!-- Campo EXT -->
+                                <div class="col">
+                                    <div class="input-group">
+                                        <span class="input-group-text label-space-sm" id="label-ext">EXT</span>
+                                        <input type="number" class="form-control" id="ext" name="ext" aria-label="EXT"
+                                            aria-describedby="label-ext" min="1000" max="9999" maxlength="4"
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                            required />
+                                    </div>
+                                </div>
+                                <!-- Campo ACTIVO -->
+                                <div class="col">
+                                    <div class="input-group">
+                                        <label class="input-group-text label-space-sm" for="estado">ESTADO</label>
+                                        <select class="form-select" id="estado" name="estado" required>
+                                            <option selected disabled value="">-</option>
+                                            <option value="activo">ACTIVA</option>
+                                            <option value="inactivo">INACTIVA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <!-- Campo NOMBRE -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text label-space" id="label-nombre">NOMBRE</span>
+                                <input type="text" class="form-control" id="nombre" name="nombre" aria-label="NOMBRE"
+                                    aria-describedby="label-nombre" required>
+                            </div>
+                            <!-- Campo DEPARTAMENTO -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text label-space" id="label-departamento">DEPTO</span>
+                                <input type="text" class="form-control" id="departamento" name="departamento"
+                                    aria-label="DEPARTAMENTO" aria-describedby="label-departamento" required>
+                            </div>
+                            <!-- Campo POSICIÓN -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text label-space" id="label-posicion">POSICIÓN</span>
+                                <input type="text" class="form-control" id="posicion" name="posicion"
+                                    aria-label="POSICION" aria-describedby="label-posicion" required>
+                            </div>
+                            <!-- Campo TIPO -->
+                            <div class="input-group mb-3">
+                                <label class="input-group-text label-space3" for="tipo">TIPO TEL</label>
+                                <select class="form-select" id="tipo" name="tipo" required>
+                                    <option selected disabled value="">Seleccionar</option>
+                                    <option value="analogo">ANALOGO</option>
+                                    <option value="ip">IP</option>
+                                    <option value="softphone">SOFTPHONE</option>
+                                </select>
+                            </div>
+                            <!-- Campo DEPENDENCIA -->
+                            <div class="input-group">
+                                <label class="input-group-text label-space3" for="dependencia">DEPENDENCIA</label>
+                                <select class="form-select" id="dependencia-add" name="dependencia" required>
+                                    <option selected disabled value="">Seleccionar</option>
+                                </select>
+                            </div>
+
+                            <!-- Campos ocultos -->
+                            <input type="hidden" id="propiedad" name="codigoPropiedad" value="{{codigoPropiedad}}">
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-around mb-2">
+                            <button type="submit" class="btn brandAlter px-4 shadow">Guardar</button>
+                            <button type="button" class="btn brandAlter2 px-4 shadow"
+                                onclick="window.location.href='/extensiones';">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast container -->
+{{#if toast}}
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast align-items-center text-bg-{{toast.type}} border-3 show animate-toast" role="alert"
+        aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <strong><i class="bi bi-exclamation-triangle"></i>&nbsp;{{toast.title}}</strong>:
+                <p>{{toast.message}}</p>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+{{/if}}
