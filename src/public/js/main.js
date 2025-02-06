@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
     aviso.style.display = 'none';  // Ocultar el aviso de inicio
 
     // Verificar si hay una propiedad guardada en localStorage
-    const propiedad = localStorage.getItem("selectedProperty");
+   /*  const propiedad = localStorage.getItem("selectedProperty"); */
+    const propiedad = "hrpuj";
     console.log("Propiedad guardada:", propiedad);
 
     if (!propiedad) {
