@@ -210,9 +210,17 @@ function loadTableCambios() {
   $("#cambios").hide(); // Ocultar la tabla mientras se carga
 
   // Obtener el valor de 'codigoPropiedad' desde el campo oculto
-  const codigoPropiedad = document.getElementById("codigoPropiedad").value;
+  const codigoPropiedadElement = document.getElementById("codigoPropiedad");
 
-  // Verificar que 'codigoPropiedad' esté presente
+  // Verificar si 'codigoPropiedad' está presente antes de intentar acceder a su valor
+  if (!codigoPropiedadElement) {
+    console.error("El campo 'codigoPropiedad' no se encuentra en el DOM.");
+    $("#loader").hide(); // Ocultar el loader si el campo no existe
+    return;
+  }
+
+  const codigoPropiedad = codigoPropiedadElement.value;
+
   if (!codigoPropiedad) {
     console.error("El campo 'codigoPropiedad' es requerido.");
     $("#loader").hide(); // Ocultar el loader si hay un error
@@ -326,6 +334,7 @@ function loadTableCambios() {
   });
 }
 
+
 ////////////////////////////////TABLA TODOS CAMBIOS /////////////////////////////////////////////////////
 function loadTableTodosCambios() {
   const pageLength = getPageLengthBasedOnViewport();
@@ -334,9 +343,18 @@ function loadTableTodosCambios() {
   $("#reg-cambios").hide(); // Ocultar la tabla mientras se carga
 
   // Obtener el valor de 'codigoPropiedad' desde el campo oculto
-  const codigoPropiedad = document.getElementById("codigoPropiedad").value;
+  const codigoPropiedadElement = document.getElementById("codigoPropiedad");
 
-  // Verificar que 'codigoPropiedad' esté presente
+  // Verificar si 'codigoPropiedad' está presente en el DOM
+  if (!codigoPropiedadElement) {
+    console.error("El campo 'codigoPropiedad' no se encuentra en el DOM.");
+    $("#loader").hide(); // Ocultar el loader si el campo no existe
+    return;
+  }
+
+  const codigoPropiedad = codigoPropiedadElement.value;
+
+  // Verificar que 'codigoPropiedad' tenga valor
   if (!codigoPropiedad) {
     console.error("El campo 'codigoPropiedad' es requerido.");
     $("#loader").hide(); // Ocultar el loader si hay un error
@@ -347,7 +365,7 @@ function loadTableTodosCambios() {
     url: `/api/cambios-all?propiedad=${codigoPropiedad}`, // Enviar 'codigoPropiedad' como parámetro
     method: "GET",
     success: function (response) {
-      console.log("Respuesta de la API:", response); // Verifica la respuesta
+      //console.log("Respuesta de la API:", response); // Verifica la respuesta
       // Ocultar el loader
       $("#loader").hide();
 
@@ -451,12 +469,66 @@ function loadTableTodosCambios() {
   });
 }
 
+////////////////////////////////TABLA DEPENDENCIAS /////////////////////////////////////////////////////
+
+function loadTableDependencias() {
+  const pageLength = getPageLengthBasedOnViewport();
+
+  extConfigTable = new DataTable("#dependencias", {
+    ajax: {
+      url: "/api/dependencias",
+      dataSrc: function(json) {
+        //console.log("Datos recibidos:", json);
+        return json.dependencias || [];
+      },
+    },
+    lengthMenu: [10, 15, 20, 25, 50, 75, 100],
+    pageLength: pageLength,
+    language: {
+      url: "/data/tablaMx.json",
+      info: "Mostrando _START_ a _END_ de _TOTAL_",
+      infoEmpty: "Mostrando 0 a 0 de 0",
+      infoFiltered: "(Filtrado de _MAX_ en total)",
+      lengthMenu: "Mostrar _MENU_ dependencias",
+      zeroRecords: "No se encontraron dependencias",
+    },
+    columns: [
+      { title: "NOMBRE", data: 0 }, // ext
+      { title: "DESCRIPCION", data: 1 }, // nombre
+      {
+        title: "ESTADO",
+        data: 2, // estado
+        render: function (data, type, row) {
+          const estado = data; // Usar directamente el valor de la columna "estado"
+          return estado === "activo"
+            ? `<span class="badge text-bg-success p-2 shadow">ACTIVA</span>`
+            : `<span class="badge text-bg-danger p-2 shadow">INACTIVA</span>`;
+        },
+      },
+      {
+        title: "EDITAR",
+        data: null, // No se usa una columna específica
+        render: function (data, type, row) {
+          return `
+            <a href="/extensiones/editar?ext=${row[0]}" 
+              class="btn btn-sm btn-warning edit-btn shadow btnEdit px-4" role="button">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+          `;
+        },
+      },
+    ],
+  });
+}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   loadTableExtConfig();
   loadTableUserConfig();
   loadTableCambios();
   loadTableTodosCambios();
+  loadTableDependencias();
 });
 
 //rellenar dependencias
@@ -473,30 +545,45 @@ document.addEventListener("DOMContentLoaded", async () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const dependencias = await response.json();
+      const data = await response.json();
+      // Extraer solo los nombres de las dependencias del array
+      const dependencias = data.dependencias.map(dep => dep[0]); // Tomamos el primer elemento (depend_nombre)
 
-      // Función para normalizar valores (convertir a minúsculas)
-      const normalize = (value) => value.toLowerCase();
+      // Función para normalizar valores
+      const normalize = (value) => value?.toLowerCase() || '';
 
       if (dependenciaAddSelect) {
+        // Agregar opción por defecto
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "-- Seleccione una dependencia --";
+        dependenciaAddSelect.appendChild(defaultOption);
+
+        // Agregar las dependencias
         dependencias.forEach((dep) => {
           const option = document.createElement("option");
-          option.value = dep; // El valor sigue siendo en minúsculas
-          option.textContent = dep.toUpperCase(); // Mostrar en mayúsculas
+          option.value = dep;
+          option.textContent = dep.toUpperCase();
           dependenciaAddSelect.appendChild(option);
         });
       }
 
       if (dependenciaEditSelect) {
         const currentDependencia = dependenciaEditSelect.getAttribute("data-current-value");
-        const normalizedCurrentDependencia = normalize(currentDependencia); // Normalizar el valor actual
+        const normalizedCurrentDependencia = normalize(currentDependencia);
 
+        // Agregar opción por defecto
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "-- Seleccione una dependencia --";
+        dependenciaEditSelect.appendChild(defaultOption);
+
+        // Agregar las dependencias
         dependencias.forEach((dep) => {
           const option = document.createElement("option");
-          option.value = dep; // El valor sigue siendo en minúsculas
-          option.textContent = dep.toUpperCase(); // Mostrar en mayúsculas
+          option.value = dep;
+          option.textContent = dep.toUpperCase();
 
-          // Comparar valores normalizados
           if (normalize(dep) === normalizedCurrentDependencia) {
             option.selected = true;
           }
@@ -506,10 +593,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     } catch (error) {
       console.error("Error al cargar dependencias:", error);
+      // Mostrar mensaje de error al usuario
+      const errorMessage = "Error al cargar las dependencias. Por favor, recargue la página.";
+      if (dependenciaAddSelect) {
+        dependenciaAddSelect.innerHTML = `<option value="">${errorMessage}</option>`;
+      }
+      if (dependenciaEditSelect) {
+        dependenciaEditSelect.innerHTML = `<option value="">${errorMessage}</option>`;
+      }
     }
   }
 });
 
+//////////////////////////TOAST///////////////////////////
 document.addEventListener("DOMContentLoaded", () => {
   // Seleccionar todos los toasts en la página
   const toasts = document.querySelectorAll(".toast");

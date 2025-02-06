@@ -104,6 +104,17 @@ body {
   display: none;
 }
 
+/* Cambiar el tamaño de fuente de todas las celdas */
+#extensiones.dataTable td {
+  font-size: 18px; /* Ajusta según lo que necesites */
+}
+
+/* Cambiar el tamaño de fuente de las cabeceras */
+#extensiones.dataTable th {
+  font-size: 22px; /* Ajusta según lo que necesites */
+}
+
+
 
 #content {
   margin-top: 3.5rem; /* Espaciado adicional opcional para mejor separación visual */

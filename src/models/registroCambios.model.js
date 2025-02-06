@@ -1,26 +1,24 @@
 import pool from "../database/connection.js";
 
+// Modificar las funciones para que la propiedad esté en minúsculas
+
 export const getCambios = async (propiedad) => {
   try {
-    // Validar que propiedad esté presente
     if (!propiedad) {
       throw new Error("El campo 'propiedad' es requerido.");
     }
 
-    // Generar el nombre de la tabla dinámicamente
-    const tableName = `registro_cambios_${propiedad}`;
+    // Convertir 'propiedad' a minúsculas
+    const tableName = `registro_cambios_${propiedad.toLowerCase()}`;  // Aseguramos que la propiedad esté en minúsculas
     console.log("Nombre de la tabla generado:", tableName);
 
-    console.log('Iniciando consulta de cambios...');
-
-    // Limitar la consulta a los últimos 10 registros por fecha de modificación
     const [rows] = await pool.query(
       `SELECT * FROM ${tableName} ORDER BY modified_at DESC LIMIT 10`
     );
 
     if (!rows.length) {
       console.log("No se encontraron cambios en la base de datos.");
-      return { cambiosConfig: [], hasData: false }; // Indicador de que no hay datos
+      return { cambiosConfig: [], hasData: false };
     }
 
     const cambiosFormateados = rows.map((row) => {
@@ -35,7 +33,7 @@ export const getCambios = async (propiedad) => {
       ];
     });
 
-    return { cambiosConfig: cambiosFormateados, hasData: true }; // Indicador de que hay datos
+    return { cambiosConfig: cambiosFormateados, hasData: true };
   } catch (error) {
     console.error("Error detallado al obtener cambios:", {
       message: error.message,
@@ -52,7 +50,8 @@ export const getTodosCambios = async (propiedad) => {
       throw new Error("El campo 'propiedad' es requerido.");
     }
 
-    const tableName = `registro_cambios_${propiedad}`;
+    // Convertir 'propiedad' a minúsculas
+    const tableName = `registro_cambios_${propiedad.toLowerCase()}`;  // Aseguramos que la propiedad esté en minúsculas
     console.log("Nombre de la tabla generado:", tableName);
 
     const [rows] = await pool.query(
@@ -87,16 +86,14 @@ export const getTodosCambios = async (propiedad) => {
   }
 };
 
-
 export const registrarCambios = async (ext, cambios, modified_by_nombre, propiedad) => {
   try {
-    // Validar que propiedad esté presente
     if (!propiedad) {
       throw new Error("El campo 'propiedad' es requerido.");
     }
 
-    // Generar el nombre de la tabla dinámicamente
-    const tableName = `registro_cambios_${propiedad}`;
+    // Convertir 'propiedad' a minúsculas
+    const tableName = `registro_cambios_${propiedad.toLowerCase()}`;  // Aseguramos que la propiedad esté en minúsculas
     console.log("Nombre de la tabla generado:", tableName);
 
     for (const cambio of cambios) {

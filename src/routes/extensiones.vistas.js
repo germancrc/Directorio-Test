@@ -1,6 +1,5 @@
 import { Router } from "express";
 import checkAuth from "../middlewares/authMiddleware.js";
-import { checkAdmin } from "../middlewares/checkAdmin.js";
 import * as extensionesModel from "../models/extensiones.model.js";
 import { getPropiedadByCodigo } from "../models/propiedades.model.js"; // Importar la función para obtener el nombre de la propiedad
 

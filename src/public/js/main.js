@@ -7,31 +7,58 @@ const content = document.getElementById('hotelSelected');
 const aviso = document.getElementById('noHotelSelected');
 const selector = document.getElementById('propiedadesSelector');
 
-const switchElement = document.getElementById('switchThemeColor');
+  document.addEventListener("DOMContentLoaded", function () {
+    const switchElement = document.getElementById("switchThemeColor");
 
-// Set default theme to dark
-if (document.documentElement.getAttribute('data-bs-theme') === 'light') {
-  switchElement.checked = true;
-}
+    if (!switchElement) {
+      console.error("El switch de tema no se encontró.");
+      return;
+    }
 
-// Cambiar el tema global al usar el switch
-switchElement.addEventListener('change', function () {
-  const newTheme = this.checked ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-bs-theme', newTheme);
-});
+    // Obtener el tema guardado o establecer 'dark' por defecto
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    
+    // Aplicar el tema guardado
+    document.documentElement.setAttribute("data-bs-theme", savedTheme);
+    switchElement.checked = (savedTheme === "dark");
 
-// Guardar el tema en localStorage
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  document.documentElement.setAttribute('data-bs-theme', savedTheme);
-  switchElement.checked = savedTheme === 'dark';
-}
+    console.log("Tema actual:", savedTheme);
 
-switchElement.addEventListener('change', function () {
-  const newTheme = this.checked ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-bs-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-});
+    // Evento para cambiar el tema
+    switchElement.addEventListener("change", function () {
+      const newTheme = this.checked ? "dark" : "light";
+      document.documentElement.setAttribute("data-bs-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      console.log("Nuevo tema aplicado:", newTheme);
+    });
+  });
+
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const switchElement = document.getElementById("switchThemeColor");
+
+    if (!switchElement) {
+      console.error("El switch de tema no se encontró.");
+      return;
+    }
+
+    // Obtener el tema guardado en localStorage
+    const savedTheme = localStorage.getItem("theme") || "dark";
+
+    // Aplicar el tema guardado
+    document.documentElement.setAttribute("data-bs-theme", savedTheme);
+    switchElement.checked = savedTheme === "dark";
+
+    // Evento para cambiar el tema
+    switchElement.addEventListener("change", function () {
+      const newTheme = this.checked ? "dark" : "light";
+      document.documentElement.setAttribute("data-bs-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+    });
+  });
+
+
 
 // Mostrar todo oculto inicialmente
 document.addEventListener("DOMContentLoaded", function () {

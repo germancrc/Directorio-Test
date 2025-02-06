@@ -1,13 +1,14 @@
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import { checkDBConnection } from "./database/connection.js";
+/* import { checkDBConnection } from "./database/connection.js"; */
 /* import { getTotalesExtensiones } from './models/extensiones.model.js';  */
-import { getTotalesUsuarios } from './models/usuarios.model.js'; 
+/* import { getTotalesUsuarios } from './models/usuarios.model.js';  */
 import methodOverride from 'method-override'; 
 import { getPropiedadByCodigo } from './models/propiedades.model.js';
 import { getResumenExtensiones } from './controllers/extensiones.controller.js';
 import { getResumenUsuarios } from './controllers/usuarios.controller.js';
+import { getResumenDependencias } from './controllers/dependencias.controller.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,6 +25,7 @@ import cambiosAPIRoutes from "./routes/registroCambios.routes.js";
 import propiedadesAPIRoutes from "./routes/propiedades.routes.js";
 import extensionesViewRoutes from "./routes/extensiones.vistas.js";
 import usuariosViewRoutes from "./routes/usuarios.vistas.js"; // Importar las rutas de vistas de usuarios
+import dependenciasViewRoutes from "./routes/dependencias.vistas.js"; // Importar las rutas de vistas de dependencias
 import loginRoutes from "./routes/login.js";
 import dependenciasAPIRoutes from "./routes/dependencias.routes.js";
 import registrocambiosViewRoutes from "./routes/registroCambios.vistas.js";
@@ -33,8 +35,8 @@ import checkAuth from "./middlewares/authMiddleware.js"; // Importar el middlewa
 const app = express();
 
 // Estado base de datos
-checkDBConnection();
-
+/* checkDBConnection();
+ */
 // Configuración de Handlebars
 const hbs = create({
   defaultLayout: "main",
@@ -110,6 +112,7 @@ app.get('/config', checkAuth, async (req, res, next) => {
     // Obtener los datos de extensiones y usuarios
     const resumenExtensiones = await getResumenExtensiones(req); // Pasar req para obtener el código de propiedad
     const resumenUsuarios = await getResumenUsuarios(req); // Pasar req para obtener el código de propiedad
+    const resumenDependencias = await getResumenDependencias(req); 
 
     // Renderizar la vista con todos los datos
     return res.render('mainconfig', {
@@ -126,6 +129,10 @@ app.get('/config', checkAuth, async (req, res, next) => {
       totalUsuarios: resumenUsuarios.totalUsuarios,
       totalUserActivos: resumenUsuarios.totalUserActivos,
       totalUserInactivos: resumenUsuarios.totalUserInactivos,
+      // Datos de Dependencias
+      totalDependencias: resumenDependencias.totalDependencias,
+      totalDepActivas: resumenDependencias.totalDepActivas,
+      totalDepInactivas: resumenDependencias.totalDepInactivas,
       // Nombre de la propiedad
       nombrePropiedad: nombrePropiedad,
       codigoPropiedad: codigoPropiedad,
@@ -146,6 +153,7 @@ app.use(loginRoutes); // Aquí se maneja el login
 
 app.use("/extensiones", extensionesViewRoutes); // Rutas para vistas de extensiones
 app.use("/usuarios", usuariosViewRoutes); // Rutas para vistas de usuarios
+app.use("/dependencias", dependenciasViewRoutes); // Rutas para vistas de dependencias
 app.use(registrocambiosViewRoutes); // Agrega esta línea
 
 // Rutas de API

@@ -10,7 +10,7 @@ export const getExtensiones = async (codigoPropiedad) => {
       WHERE estado = 'activo'
     `;
 
-    console.log("Consulta SQL:", query); // Depuración
+    //console.log("Consulta SQL:", query); // Depuración
 
     const [rows] = await pool.query(query);
 

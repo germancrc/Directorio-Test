@@ -7,5 +7,21 @@ const router = Router();
 router.get("/api/dependencias", checkAuth, dependenciasController.getDependencias);
 
 
+// Create dependencia
+router.post(
+    "/api/dependencias",
+    checkAuth,
+    dependenciasController.createDependencia
+  );
+  
+  // Update specific dependencia
+  router.post(
+    "/api/dependencias/:dep",
+    checkAuth,
+    dependenciasController.updateDependencia
+  );
+  
+
+
 
 export default router;
