@@ -101,44 +101,54 @@ function getPageLengthBasedOnViewport() {
 
 // Función para cargar la tabla de extensiones
 async function loadTableExt(propiedad) {
-    // Verificar que propiedad tenga un valor válido
-    if (!propiedad) {
-        console.error("No se ha seleccionado una propiedad válida.");
-        return;
-    }
+  if (!propiedad) {
+      console.error("No se ha seleccionado una propiedad válida.");
+      return;
+  }
 
-    const pageLength = getPageLengthBasedOnViewport();
+  const pageLength = getPageLengthBasedOnViewport();
 
-    extensionsTable = new DataTable('#extensiones', {
-        destroy: true, // Reiniciar tabla si ya existe
-        ajax: {
-            url: `/api/extensiones?propiedad=${propiedad}`, // Enviar el código seleccionado
-            dataSrc: 'extensionesOficinas',
-        },
-        lengthMenu: [10, 15, 20, 25, 50, 75, 100],
-        pageLength: pageLength,
-        language: {
-            url: '/data/tablaMx.json',
-            info: "Mostrando _START_ a _END_ de _TOTAL_",
-            infoEmpty: "Mostrando 0 a 0 de 0",
-            infoFiltered: "(Filtrado de _MAX_ en total)",
-            lengthMenu: "Mostrar _MENU_ extensiones",
-            zeroRecords: "No se encontraron extensiones",
-        },
-        columnDefs: [
-            {
-                targets: [0, 1, 2, 3], // Aplicar a todas las columnas
-                className: 'text-center-vertical text-left', // Combinar clases
-            }
-        ],
-        columns: [
-            { title: "EXT" },
-            { title: "NOMBRE" },
-            { title: "DEPARTAMENTO" },
-            { title: "POSICIÓN" },
-        ],
-    });
+  extensionsTable = new DataTable('#extensiones', {
+      destroy: true, // Reiniciar tabla si ya existe
+      ajax: {
+          url: `/api/extensiones?propiedad=${propiedad}`, // Enviar el código seleccionado
+          dataSrc: 'extensionesOficinas',
+          error: function (xhr, error, thrown) {
+              console.error("Error en la carga de datos:", error, thrown);
+              
+              // Si el error es por una respuesta fallida del servidor (500)
+              if (xhr.status === 500) {
+                  alert("Hubo un problema al cargar los datos. Por favor, recargue la página.");
+                  location.reload(); // Recargar la página después de aceptar el mensaje
+              }
+          }
+      },
+      lengthMenu: [10, 15, 20, 25, 50, 75, 100],
+      pageLength: pageLength,
+      language: {
+          url: '/data/tablaMx.json',
+          info: "Mostrando _START_ a _END_ de _TOTAL_",
+          infoEmpty: "Mostrando 0 a 0 de 0",
+          infoFiltered: "(Filtrado de _MAX_ en total)",
+          lengthMenu: "Mostrar _MENU_ extensiones",
+          zeroRecords: "No se encontraron extensiones",
+      },
+      columnDefs: [
+          {
+              targets: [0, 1, 2, 3],
+              className: 'text-center-vertical text-left',
+          }
+      ],
+      columns: [
+          { title: "EXT" },
+          { title: "NOMBRE" },
+          { title: "DEPARTAMENTO" },
+          { title: "POSICIÓN" },
+      ],
+  });
 }
+
+
 
 // Inicializar el selector y cargar las propiedades
 document.addEventListener("DOMContentLoaded", async () => {
